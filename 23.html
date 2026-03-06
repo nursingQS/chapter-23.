@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 23 · Coronary Vascular Disorders</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #6d2b4b, #4a1e33);
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            background: #fbebf2;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 15px 40px rgba(110, 30, 60, 0.5);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #b94b6d, #8f2f4d);
+            color: white;
+            padding: 20px 30px;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 90px;
+            border-bottom: 5px solid #f9acc5;
+            box-shadow: 0 8px 15px #541f36;
+        }
+
+        .header-content {
+            flex: 1;
+        }
+
+        .header h1 {
+            font-size: 1.9rem;
+            margin: 0;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header h1::before {
+            content: "❤️";
+            font-size: 2.3rem;
+            filter: drop-shadow(0 0 4px #ffc1d4);
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 5px;
+            font-weight: 400;
+        }
+
+        .counter {
+            background: #903b58;
+            padding: 10px 28px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 1.3rem;
+            min-width: 110px;
+            text-align: center;
+            backdrop-filter: blur(3px);
+            border: 2px solid #feb9d2;
+            color: #fff2f7;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 10px;
+            background: #f5d0df;
+            flex-shrink: 0;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, #de6088, #b43f63);
+            height: 100%;
+            width: 0%;
+            transition: width 0.4s ease;
+            box-shadow: 0 0 12px #e6739a;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            padding: 30px;
+            background: #fddceb;
+        }
+
+        .question-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            background: white;
+            border-radius: 32px;
+            padding: 35px;
+            box-shadow: 0 20px 40px rgba(170, 50, 90, 0.2);
+            border: 2px solid #fbc0d8;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .question-header {
+            display: flex;
+            gap: 25px;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+
+        .question-number {
+            background: linear-gradient(145deg, #c75077, #9d385b);
+            color: white;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.9rem;
+            font-weight: 800;
+            flex-shrink: 0;
+            border: 3px solid #ffc3dc;
+            box-shadow: 0 7px 0 #642944;
+        }
+
+        .question-text {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            color: #772b4b;
+            flex-grow: 1;
+            font-weight: 600;
+            padding-right: 15px;
+        }
+
+        .options-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .option {
+            padding: 20px 22px;
+            border: 3px solid #fee1ef;
+            border-radius: 22px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 1.15rem;
+            box-shadow: 0 5px 12px rgba(150, 50, 80, 0.08);
+        }
+
+        .option:hover {
+            background: #fff2f9;
+            border-color: #d46d91;
+            transform: translateY(-3px);
+            box-shadow: 0 18px 25px rgba(190, 60, 110, 0.15);
+        }
+
+        .option-letter {
+            background: linear-gradient(145deg, #c24c74, #993a5b);
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            flex-shrink: 0;
+            font-size: 1.3rem;
+            border: 2px solid #fecfeb;
+        }
+
+        .option.correct {
+            background: linear-gradient(145deg, #c6e6d4, #b2dec6);
+            border-color: #2b7a56;
+            color: #1b4f32;
+        }
+        .option.correct .option-letter {
+            background: #1f7a51;
+            border-color: #b7f0d4;
+        }
+
+        .option.incorrect {
+            background: linear-gradient(145deg, #fad7d2, #fecbc3);
+            border-color: #b14242;
+            color: #631e1e;
+        }
+        .option.incorrect .option-letter {
+            background: #b84545;
+            border-color: #f5b7b7;
+        }
+
+        .feedback-area {
+            flex-shrink: 0;
+        }
+
+        .feedback {
+            padding: 25px;
+            border-radius: 20px;
+            display: none;
+            align-items: center;
+            gap: 20px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            animation: slideIn 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .feedback.correct {
+            background: linear-gradient(145deg, #daf0da, #c8e6c8);
+            border: 3px solid #2e7d5a;
+            color: #1b4d2b;
+            display: flex;
+        }
+
+        .feedback.incorrect {
+            background: linear-gradient(145deg, #ffdedb, #fecbc7);
+            border: 3px solid #bb3b3b;
+            color: #632020;
+            display: flex;
+        }
+
+        .feedback-icon {
+            font-size: 2rem;
+        }
+
+        .rationale {
+            background: linear-gradient(145deg, #fdebf3, #fcdeec);
+            border: 3px solid #c4537b;
+            border-radius: 20px;
+            padding: 25px;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+        .rationale.show {
+            display: block;
+        }
+        .rationale h4 {
+            color: #a53d61;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.3rem;
+        }
+        .rationale p {
+            color: #732a47;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 35px;
+            background: #facde1;
+            border-top: 3px solid #edb1cb;
+            flex-shrink: 0;
+            height: 85px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 16px 42px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+            white-space: nowrap;
+            box-shadow: 0 6px 0 #763e59;
+        }
+
+        .btn-primary {
+            background: linear-gradient(145deg, #c4537b, #9c3d5d);
+            color: white;
+            border: 2px solid #ffd2ea;
+        }
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 0 #543145, 0 8px 20px #cb5b85;
+        }
+        .btn-secondary {
+            background: linear-gradient(145deg, #a66481, #7d4a63);
+            color: white;
+            border: 2px solid #fddaef;
+        }
+        .btn-secondary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 0 #4c3143, 0 8px 20px #a76687;
+        }
+        .btn-cancel {
+            background: linear-gradient(145deg, #c27f7f, #aa4a4a);
+            color: white;
+            display: none;
+            border: 2px solid #f3baba;
+        }
+        .btn-cancel:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 0 #632d2d;
+        }
+        .btn-cancel.show {
+            display: flex;
+        }
+
+        .btn:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: 0 4px 0 #684459;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 700px) {
+            .question-text { font-size: 1.2rem; }
+            .option { font-size: 1rem; padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="header-content">
+            <h1>Chapter 23: Coronary Vascular Disorders</h1>
+            <div class="subtitle">40 questions · angina · MI · PTCA · CABG · metabolic syndrome</div>
+        </div>
+        <div class="counter" id="counter">1/40</div>
+    </div>
+    
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    
+    <div class="main-content">
+        <div class="question-area">
+            <div class="question-header">
+                <div class="question-number" id="questionNumber">1</div>
+                <div class="question-text" id="question"></div>
+            </div>
+            
+            <div class="options-container" id="options"></div>
+        </div>
+        
+        <div class="feedback-area">
+            <div class="feedback" id="feedback">
+                <div class="feedback-icon" id="feedbackIcon"></div>
+                <div id="feedbackText"></div>
+            </div>
+            <div class="rationale" id="rationale">
+                <h4>❤️ CARDIOLOGY RATIONALE:</h4>
+                <p id="rationaleText"></p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="navigation">
+        <button class="btn btn-secondary" id="prevBtn" onclick="previousCard()">⬅️ PREV</button>
+        <div class="nav-buttons">
+            <button class="btn btn-cancel" id="cancelBtn" onclick="cancelSelection()">✖️ CANCEL</button>
+            <button class="btn btn-primary" id="nextBtn" onclick="nextCard()">NEXT ➡️</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ----- Chapter 23 exact questions (40 items) -----
+    const questions = [
+        { //1
+            id: 1,
+            question: "The nurse is caring for a client who has been diagnosed with an elevated cholesterol level. The nurse is aware that plaque on the inner lumen of arteries is composed chiefly of what?",
+            options: [
+                "A. Lipids and fibrous tissue",
+                "B. White blood cells",
+                "C. Lipoproteins",
+                "D. High-density cholesterol"
+            ],
+            correct: 0, // A
+            rationale: "Plaque composed of lipids & fibrous tissue. (PTS:1 REF:p.726)"
+        },
+        { //2
+            id: 2,
+            question: "A client presents to the clinic reporting intermittent chest pain on exertion, which is eventually attributed to angina. The nurse should inform the client that angina is most often attributable to what cause?",
+            options: [
+                "A. Decreased cardiac output",
+                "B. Decreased cardiac contractility",
+                "C. Infarction of the myocardium",
+                "D. Coronary arteriosclerosis"
+            ],
+            correct: 3, // D
+            rationale: "Angina most often due to coronary arteriosclerosis. (PTS:1 REF:p.726)"
+        },
+        { //3
+            id: 3,
+            question: "The nurse is caring for an adult client who had symptoms of unstable angina upon admission to the hospital. What nursing diagnosis underlies the discomfort associated with angina?",
+            options: [
+                "A. Ineffective breathing pattern related to decreased cardiac output",
+                "B. Anxiety related to fear of death",
+                "C. Ineffective cardiopulmonary tissue perfusion related to coronary artery disease (CAD)",
+                "D. Impaired skin integrity related to CAD"
+            ],
+            correct: 2, // C
+            rationale: "Angina discomfort results from ineffective cardiopulmonary tissue perfusion. (PTS:1 REF:p.742)"
+        },
+        { //4
+            id: 4,
+            question: "The triage nurse in the ED assesses an adult client who presents with reports of midsternal chest pain that has lasted for the last 5 hours. If the client's symptoms are due to an MI, what will have happened to the myocardium?",
+            options: [
+                "A. It may have developed an increased area of infarction during the time without treatment.",
+                "B. It will probably not have more damage than if the client came in immediately.",
+                "C. It may be responsive to restoration of the area of dead cells with proper treatment.",
+                "D. It has been irreparably damaged, so immediate treatment is no longer necessary."
+            ],
+            correct: 0, // A
+            rationale: "Delayed treatment → increased myocardial damage. (PTS:1 REF:p.737)"
+        },
+        { //5
+            id: 5,
+            question: "Family members bring a client to the ED with pale cool skin, sudden midsternal chest pain unrelieved with rest, and a history of CAD. How should the nurse best interpret these initial data?",
+            options: [
+                "A. The symptoms indicate angina and should be treated as such.",
+                "B. The symptoms indicate a pulmonary etiology rather than a cardiac etiology.",
+                "C. The symptoms indicate an acute coronary episode and should be treated as such.",
+                "D. Treatment should be determined pending the results of an exercise stress test."
+            ],
+            correct: 2, // C
+            rationale: "Unrelieved by rest, pale cool skin → acute coronary episode. (PTS:1 REF:p.726)"
+        },
+        { //6
+            id: 6,
+            question: "An OR nurse is preparing to assist with a coronary artery bypass graft (CABG). The OR nurse knows that what vessel is most commonly used as source for a CABG?",
+            options: [
+                "A. Brachial artery",
+                "B. Brachial vein",
+                "C. Femoral artery",
+                "D. Greater saphenous vein"
+            ],
+            correct: 3, // D
+            rationale: "Greater saphenous vein most common CABG graft. (PTS:1 REF:p.748)"
+        },
+        { //7
+            id: 7,
+            question: "A client with an occluded coronary artery is admitted and has an emergency percutaneous transluminal coronary angioplasty (PTCA). The client is admitted to the cardiac critical care unit after the PTCA. The complications for which the nurse should monitor the client include which of the following?",
+            options: [
+                "A. Peripheral edema",
+                "B. Bleeding at insertion site",
+                "C. Left ventricular hypertrophy",
+                "D. Pulmonary edema"
+            ],
+            correct: 1, // B
+            rationale: "PTCA complications: bleeding at insertion site, abrupt closure, arterial thrombosis. (PTS:1 REF:p.747)"
+        },
+        { //8
+            id: 8,
+            question: "A client with type 2 diabetes and hypertension (HTN) has a routine follow-up appointment after a cardiac stent placement. On assessment the nurse notes the client weighs 250 lb/113.4 kg with a waist circumference of 40 inches/101.6 cm, blood pressure is 162/84 mm Hg, and fasting blood glucose is 220 mg/dl. Based on these findings, which syndrome should the nurse most suspect?",
+            options: [
+                "A. Adams-Nance syndrome",
+                "B. Postpericardiotomy syndrome",
+                "C. Metabolic syndrome",
+                "D. Alagille syndrome"
+            ],
+            correct: 2, // C
+            rationale: "Metabolic syndrome: central obesity, HTN, hyperglycemia, dyslipidemia. (PTS:1 REF:p.727)"
+        },
+        { //9
+            id: 9,
+            question: "The OR nurse is explaining to a client that cardiac surgery requires the absence of blood from the surgical field. At the same time, it is imperative to maintain perfusion of body organs and tissues. What technique for achieving these simultaneous goals should the nurse describe?",
+            options: [
+                "A. Coronary artery bypass graft (CABG)",
+                "B. Percutaneous transluminal coronary angioplasty (PTCA)",
+                "C. Atherectomy",
+                "D. Cardiopulmonary bypass"
+            ],
+            correct: 3, // D
+            rationale: "Cardiopulmonary bypass circulates/oxygenates blood while bypassing heart/lungs. (PTS:1 REF:p.749)"
+        },
+        { //10
+            id: 10,
+            question: "The nurse has just admitted a client for cardiac surgery. The client tearfully describes feeling afraid of dying while undergoing the surgery. What is the nurse's best response?",
+            options: [
+                "A. Explore the factors underlying the client's anxiety.",
+                "B. Teach the client guided imagery techniques.",
+                "C. Obtain an order for a PRN benzodiazepine.",
+                "D. Describe the procedure in greater detail."
+            ],
+            correct: 0, // A
+            rationale: "Assess anxiety first; identify fears. (PTS:1 REF:p.752)"
+        },
+        { //11
+            id: 11,
+            question: "A client with angina has been prescribed nitroglycerin. Before administering the drug, the nurse should inform the client about what potential adverse effects?",
+            options: [
+                "A. Nervousness or paresthesia",
+                "B. Throbbing headache or dizziness",
+                "C. Drowsiness or blurred vision",
+                "D. Tinnitus or diplopia"
+            ],
+            correct: 1, // B
+            rationale: "Headache & dizziness common with nitroglycerin. (PTS:1 REF:p.734)"
+        },
+        { //12
+            id: 12,
+            question: "The nurse is providing an educational workshop about coronary artery disease (CAD) and its risk factors. The nurse explains to participants that CAD has many risk factors, some that can be controlled and some that cannot. Which risk factors should the nurse list that can be controlled or modified?",
+            options: [
+                "A. Gender, obesity, family history, and smoking",
+                "B. Inactivity, stress, gender, and smoking",
+                "C. Cholesterol levels, hypertension, and smoking",
+                "D. Stress, family history, and obesity"
+            ],
+            correct: 2, // C
+            rationale: "Modifiable: cholesterol, tobacco, hypertension, diabetes. (PTS:1 REF:p.730)"
+        },
+        { //13
+            id: 13,
+            question: "A client presents to the ED reporting severe substernal chest pain radiating down the left arm. The client is admitted to the coronary care unit (CCU) with a diagnosis of myocardial infarction (MI). What nursing assessment activity is a priority on admission to the CCU?",
+            options: [
+                "A. Begin ECG monitoring.",
+                "B. Obtain information about family history of heart disease.",
+                "C. Auscultate lung fields.",
+                "D. Determine if the client smokes."
+            ],
+            correct: 0, // A
+            rationale: "ECG within 10 min; arrhythmias leading cause of death early post-MI. (PTS:1 REF:p.738)"
+        },
+        { //14
+            id: 14,
+            question: "The public health nurse is participating in a health fair and interviews a client with a history of hypertension, who is currently smoking one pack of cigarettes per day. The client denies any of the most common manifestations of CAD. The nurse should expect the focuses of CAD treatment to be:",
+            options: [
+                "A. drug therapy and smoking cessation.",
+                "B. diet and drug therapy.",
+                "C. diet therapy only.",
+                "D. diet therapy and smoking cessation."
+            ],
+            correct: 3, // D
+            rationale: "Asymptomatic: diet + smoking cessation first-line. (PTS:1 REF:p.731)"
+        },
+        { //15
+            id: 15,
+            question: "The nurse is working with a client who had an MI and is now active in rehabilitation. The nurse should teach this client to cease activity if which of the following occurs?",
+            options: [
+                "A. The client experiences chest pain, palpitations, or dyspnea.",
+                "B. The client experiences a noticeable increase in heart rate during activity.",
+                "C. The client's oxygen saturation level drops below 96%.",
+                "D. The client's respiratory rate exceeds 30 breaths/min."
+            ],
+            correct: 0, // A
+            rationale: "Stop activity if chest pain, dyspnea, palpitations. (PTS:1 REF:p.741)"
+        },
+        { //16
+            id: 16,
+            question: "A client with cardiovascular disease is being treated with amlodipine, which is intended to cause what therapeutic effect?",
+            options: [
+                "A. Reducing the heart's workload by decreasing heart rate and myocardial contraction",
+                "B. Preventing platelet aggregation and subsequent thrombosis",
+                "C. Reducing myocardial oxygen consumption by blocking adrenergic stimulation to the heart",
+                "D. Increasing the efficiency of myocardial oxygen consumption, thus decreasing ischemia and relieving pain"
+            ],
+            correct: 0, // A
+            rationale: "Amlodipine (Ca channel blocker) decreases HR & contractility → reduces workload. (PTS:1 REF:p.734)"
+        },
+        { //17
+            id: 17,
+            question: "The nurse is providing care for a client with high cholesterol and triglyceride values. In teaching the client about therapeutic lifestyle changes such as diet and exercise, the nurse realizes that the desired goal for cholesterol levels is which of the following?",
+            options: [
+                "A. High HDL values and high triglyceride values",
+                "B. Absence of detectable total cholesterol levels",
+                "C. Elevated blood lipids, fasting glucose less than 100",
+                "D. Low LDL values and high HDL values"
+            ],
+            correct: 3, // D
+            rationale: "Goal: low LDL, high HDL. (PTS:1 REF:p.727)"
+        },
+        { //18
+            id: 18,
+            question: "A nurse educator is conducting an inservice for nursing students about how tobacco use impacts coronary artery disease (CAD)? What are the primary ways that tobacco use impacts CAD? Select all that apply.",
+            options: [
+                "A. Decreases the supply of oxygen to the myocardium",
+                "B. Increases platelet adhesion",
+                "C. Raises the heart rate and blood pressure",
+                "D. Causes the coronary arteries to dilate",
+                "E. Increases the blood carbon monoxide level"
+            ],
+            correct: [0,1,2,4], // A, B, C, E
+            rationale: "Tobacco: catecholamines ↑ HR/BP, coronary constriction, ↑ CO, ↑ platelet adhesion. (PTS:1 REF:p.730)"
+        },
+        { //19
+            id: 19,
+            question: "The nurse is caring for a client who is believed to have just experienced an MI. The nurse notes changes in the ECG of the client. What change on an ECG most strongly suggests to the nurse that ischemia is occurring?",
+            options: [
+                "A. P-wave inversion",
+                "B. T-wave inversion",
+                "C. Qwave changes with no change in ST or T wave",
+                "D. P-wave enlargement"
+            ],
+            correct: 1, // B
+            rationale: "T-wave inversion indicates ischemia. (PTS:1 REF:p.738)"
+        },
+        { //20
+            id: 20,
+            question: "An adult client is admitted to the ED with chest pain. The client states that there was unrelieved chest pain for approximately 20 minutes before coming to the hospital. To minimize cardiac damage, the nurse should expect to administer which of the following interventions?",
+            options: [
+                "A. Thrombolytics (fibrinolytics), oxygen administration, and nonsteroidal anti-inflammatories",
+                "B. Morphine sulphate, oxygen, and bed rest",
+                "C. Oxygen and beta-adrenergic blockers",
+                "D. Bed rest, albuterol nebulizer treatments, and oxygen"
+            ],
+            correct: 1, // B
+            rationale: "Suspected MI: O2, aspirin, nitroglycerin, morphine, bed rest. (PTS:1 REF:p.740)"
+        },
+        { //21
+            id: 21,
+            question: "A client with hypertension is ambulating in the hospital hallway and reports chest pain. In which order would the nurse assess and treat this client? (drag and drop order in answer key) Options: A. The first set of vital signs are done. B. The nurse assesses the client's angina. C. A 12-lead electrocardiogram (ECG) is performed. D. The client is instructed to stop all activity. E. The client receives the first dose of nitroglycerin. F. The client is transferred to a higher acuity unit.",
+            options: [
+                "A. D,B,A,C,E,F",
+                "B. A,B,C,D,E,F",
+                "C. B,A,D,C,E,F",
+                "D. D,A,B,C,E,F"
+            ],
+            correct: 0, // D,B,A,C,E,F
+            rationale: "Stop activity → assess angina → vital signs → ECG → nitroglycerin → transfer if needed. (PTS:1 REF:p.736)"
+        },
+        { //22
+            id: 22,
+            question: "In preparation for cardiac surgery, a client was taught about measures to prevent venous thromboembolism. What statement indicates that the client clearly understood this education?",
+            options: [
+                "A. 'I'll try to stay in bed for the first few days to allow myself to heal.'",
+                "B. 'I'll make sure that I don't cross my legs when I'm resting in bed.'",
+                "C. 'I'll keep pillows under my knees to help my blood circulate better.'",
+                "D. 'I'll put on those compression stockings if I get pain in my calves.'"
+            ],
+            correct: 1, // B
+            rationale: "Avoid crossing legs to prevent DVT. (PTS:1 REF:p.762)"
+        },
+        { //23
+            id: 23,
+            question: "When assessing a client diagnosed with angina pectoris, it is most important for the nurse to gather what information?",
+            options: [
+                "A. The client's activities, limitations, and level of consciousness after the attacks",
+                "B. The client's symptoms and the activities that precipitate attacks",
+                "C. The client's understanding of the pathology of angina",
+                "D. The client's coping strategies surrounding the attacks"
+            ],
+            correct: 1, // B
+            rationale: "Gather info on symptoms and precipitating activities. (PTS:1 REF:p.735)"
+        },
+        { //24
+            id: 24,
+            question: "The nurse is writing a care plan for a client who has been diagnosed with angina pectoris. The client describes herself as being 'distressed' and 'shocked' by the new diagnosis. What nursing diagnosis is most clearly suggested by the client's statement?",
+            options: [
+                "A. Spiritual distress related to change in health status",
+                "B. Acute confusion related to prognosis for recovery",
+                "C. Anxiety related to cardiac symptoms",
+                "D. Deficient knowledge related to treatment of angina pectoris"
+            ],
+            correct: 2, // C
+            rationale: "'Distressed, shocked' suggests anxiety. (PTS:1 REF:p.735)"
+        },
+        { //25
+            id: 25,
+            question: "The hospital nurse is caring for a client who reports that an angina attack is beginning. Which action is the nurse's most appropriate initial action?",
+            options: [
+                "A. Have the client sit down and put the head between the knees.",
+                "B. Have the client perform pursed-lip breathing.",
+                "C. Have the client stand still and bend over at the waist.",
+                "D. Place the client on bed rest in a semi-Fowler position."
+            ],
+            correct: 3, // D
+            rationale: "Stop activity, rest in semi-Fowler to reduce O2 demand. (PTS:1 REF:p.736)"
+        },
+        { //26
+            id: 26,
+            question: "A nurse is assigned four clients with diagnoses that rule out myocardial infarction (MI) due to chest pain. Which client's test results best demonstrate the specific diagnosis of unstable angina (USA)?",
+            options: [
+                "A. A 63-year-old client with elevated troponins and no elevation in the ST segment.",
+                "B. A 72-year-old client with an increase in myoglobin, no elevation in the ST segment, and no elevation in troponins.",
+                "C. A 54-year-old client with elevated creatine kinase myocardial band (CK-MB) and ST segment elevations in two contiguous leads on the electrocardiogram (ECG).",
+                "D. A 48-year-old client with T wave inversions, ST elevation, and abnormal Q waves."
+            ],
+            correct: 1, // B
+            rationale: "Unstable angina: myoglobin ↑, no troponin, no ST elevation. (PTS:1 REF:p.739)"
+        },
+        { //27
+            id: 27,
+            question: "The ED nurse is caring for a client with a suspected MI. What drug should the nurse anticipate administering to this client?",
+            options: [
+                "A. Oxycodone",
+                "B. Warfarin",
+                "C. Morphine",
+                "D. Acetaminophen"
+            ],
+            correct: 2, // C
+            rationale: "Suspected MI: aspirin, nitroglycerin, morphine, IV beta-blocker. (PTS:1 REF:p.740)"
+        },
+        { //28
+            id: 28,
+            question: "The nurse is assessing a client with acute coronary syndrome (ACS). The nurse includes a careful history in the assessment, especially with regard to signs and symptoms. What signs and symptoms are suggestive of ACS? Select all that apply.",
+            options: [
+                "A. Dyspnea",
+                "B. Unusual fatigue",
+                "C. Hypotension",
+                "D. Syncope",
+                "E. Peripheral cyanosis"
+            ],
+            correct: [0,1,3], // A, B, D
+            rationale: "ACS: dyspnea, unusual fatigue, syncope, diaphoresis, chest pain. (PTS:1 REF:p.738)"
+        },
+        { //29
+            id: 29,
+            question: "The nurse is creating a plan of care for a client with acute coronary syndrome. What nursing action should be included in the client's care plan?",
+            options: [
+                "A. Facilitate daily arterial blood gas (ABG) sampling.",
+                "B. Administer supplementary oxygen, as needed.",
+                "C. Have client maintain supine positioning when in bed.",
+                "D. Perform chest physiotherapy, as indicated."
+            ],
+            correct: 1, // B
+            rationale: "Oxygen therapy for symptom relief. (PTS:1 REF:p.740)"
+        },
+        { //30
+            id: 30,
+            question: "The nurse is participating in the care conference for a client with ACS. What goal should guide the care team's selection of assessments, interventions, and treatments?",
+            options: [
+                "A. Maximizing cardiac output while minimizing heart rate",
+                "B. Decreasing energy expenditure of the myocardium",
+                "C. Balancing myocardial oxygen supply with demand",
+                "D. Increasing the size of the myocardial muscle"
+            ],
+            correct: 2, // C
+            rationale: "Balance myocardial O2 supply/demand priority. (PTS:1 REF:p.742)"
+        },
+        { //31
+            id: 31,
+            question: "The nurse working on the coronary care unit is caring for a client with ACS. How can the nurse best meet the client's psychosocial needs?",
+            options: [
+                "A. Reinforce the fact that treatment will be successful.",
+                "B. Facilitate a referral to a chaplain or spiritual leader.",
+                "C. Increase the client's participation in rehabilitation activities.",
+                "D. Directly address the client's anxieties and fears."
+            ],
+            correct: 3, // D
+            rationale: "Alleviate anxiety/fear directly. (PTS:1 REF:p.741)"
+        },
+        { //32
+            id: 32,
+            question: "The nurse is caring for a client who has undergone percutaneous transluminal coronary angioplasty (PTCA). What is the major indicator of success for this procedure?",
+            options: [
+                "A. Increase in the size of the artery's lumen",
+                "B. Decrease in arterial blood flow in relation to venous flow",
+                "C. Increase in the client's resting heart rate",
+                "D. Increase in the client's level of consciousness (LOC)"
+            ],
+            correct: 0, // A
+            rationale: "PTCA success = increased luminal size (opened vessel). (PTS:1 REF:p.746)"
+        },
+        { //33
+            id: 33,
+            question: "A nurse has taken on the care of a client who had a coronary artery stent placed yesterday. When reviewing the client's daily medication administration record, the nurse should anticipate administering what drug?",
+            options: [
+                "A. Ibuprofen",
+                "B. Clopidogrel",
+                "C. Dipyridamole",
+                "D. Acetaminophen"
+            ],
+            correct: 1, // B
+            rationale: "Stent → antiplatelets: aspirin + clopidogrel. (PTS:1 REF:p.747)"
+        },
+        { //34
+            id: 34,
+            question: "A nurse is working with a client who has been scheduled for a percutaneous coronary intervention (PCI) later in the week. What anticipatory guidance should the nurse provide to the client?",
+            options: [
+                "A. The client will remain on bed rest for 48 to 72 hours after the procedure.",
+                "B. The client will be given vitamin K infusions to prevent bleeding following PCI.",
+                "C. A sheath will be placed over the insertion site after the procedure is finished.",
+                "D. The procedure will likely be repeated in 6 to 8 weeks to ensure success."
+            ],
+            correct: 2, // C
+            rationale: "Sheath kept in place until coagulation achieved. (PTS:1 REF:p.747)"
+        },
+        { //35
+            id: 35,
+            question: "The nurse is caring for a client who will have coronary artery revascularization. When explaining the pre- and postoperative regimens, the nurse should address which subject?",
+            options: [
+                "A. Symptoms of hypovolemia",
+                "B. Symptoms of low blood pressure",
+                "C. Complications requiring graft removal",
+                "D. Intubation and mechanical ventilation"
+            ],
+            correct: 3, // D
+            rationale: "Most remain intubated post-op; prepare client. (PTS:1 REF:p.753)"
+        },
+        { //36
+            id: 36,
+            question: "A client in the cardiac step-down unit has begun bleeding from the percutaneous coronary intervention (PCI) access site in the femoral region. What is the nurse's most appropriate action?",
+            options: [
+                "A. Call for assistance and initiate cardiopulmonary resuscitation.",
+                "B. Reposition the client's leg in a nondependent position.",
+                "C. Promptly remove the femoral sheath.",
+                "D. Call for help and apply pressure to the access site."
+            ],
+            correct: 3, // D
+            rationale: "Apply pressure to access site; call for help. (PTS:1 REF:p.747)"
+        },
+        { //37
+            id: 37,
+            question: "The nurse providing care for a client post PTCA knows to monitor the client closely. For what complications should the nurse monitor the client? Select all that apply.",
+            options: [
+                "A. Abrupt closure of the coronary artery",
+                "B. Venous insufficiency",
+                "C. Bleeding at the insertion site",
+                "D. Retroperitoneal bleeding",
+                "E. Arterial occlusion"
+            ],
+            correct: [0,2,3,4], // A, C, D, E
+            rationale: "PTCA complications: abrupt closure, bleeding, retroperitoneal bleeding, arterial occlusion. (PTS:1 REF:p.747)"
+        },
+        { //38
+            id: 38,
+            question: "A client who is postoperative day 1 following a CABG has produced 20 mL of urine in the past 3 hours and the nurse has confirmed the patency of the urinary catheter. What is the nurse's most appropriate action?",
+            options: [
+                "A. Document the client's low urine output and monitor closely for the next several hours.",
+                "B. Contact the dietitian and suggest the need for increased oral fluid intake.",
+                "C. Contact the client's health care provider and continue to assess fluid balance and renal function.",
+                "D. Increase the infusion rate of the client's IV fluid to prompt an increase in renal function."
+            ],
+            correct: 2, // C
+            rationale: "Oliguria may indicate hypovolemia/renal insufficiency; notify provider. (PTS:1 REF:p.760)"
+        },
+        { //39
+            id: 39,
+            question: "A client is recovering in the hospital from cardiac surgery. The nurse has identified the diagnosis of risk for ineffective airway clearance related to pulmonary secretions. What intervention best addresses this risk?",
+            options: [
+                "A. Administration of bronchodilators by nebulizer",
+                "B. Administration of inhaled corticosteroids by metered dose inhaler (MDI)",
+                "C. Client's consistent performance of deep‑breathing and coughing exercises",
+                "D. Client's active participation in the cardiac rehabilitation program"
+            ],
+            correct: 2, // C
+            rationale: "Deep breathing & coughing clear pulmonary secretions. (PTS:1 REF:p.757)"
+        },
+        { //40
+            id: 40,
+            question: "An ED nurse is assessing a 71-year-old female client for a suspected MI. When planning the assessment, the nurse should be cognizant of what signs and symptoms of MI that are particularly common in female clients? Select all that apply.",
+            options: [
+                "A. Shortness of breath",
+                "B. Chest pain",
+                "C. Anxiety",
+                "D. Indigestion",
+                "E. Nausea"
+            ],
+            correct: [3,4], // D, E
+            rationale: "Women may present with indigestion, nausea, palpitations. (PTS:1 REF:p.727)"
+        }
+    ];
+
+    // ----- identical navigation/selection logic as template -----
+    let currentQuestion = 0;
+    let selectedOption = null;
+    let answers = Array(questions.length).fill(null);
+
+    function loadQuestion() {
+        const q = questions[currentQuestion];
+        if (!q) return;
+
+        const progress = ((currentQuestion + 1) / questions.length) * 100;
+        document.getElementById('progressBar').style.width = `${progress}%`;
+        document.getElementById('counter').textContent = `${currentQuestion + 1}/${questions.length}`;
+        document.getElementById('questionNumber').textContent = q.id;
+
+        document.getElementById('question').innerHTML = q.question;
+        loadOptions(q);
+
+        document.getElementById('feedback').style.display = 'none';
+        document.getElementById('rationale').classList.remove('show');
+        document.getElementById('cancelBtn').classList.remove('show');
+
+        document.getElementById('prevBtn').disabled = currentQuestion === 0;
+        const stored = answers[currentQuestion];
+        document.getElementById('nextBtn').disabled = stored === null || stored === undefined;
+        document.getElementById('nextBtn').textContent = currentQuestion >= questions.length - 1 ? 'FINISH ➡️' : 'NEXT ➡️';
+    }
+
+    function loadOptions(q) {
+        const container = document.getElementById('options');
+        container.innerHTML = '';
+        q.options.forEach((opt, idx) => {
+            const div = document.createElement('div');
+            div.className = 'option';
+            div.innerHTML = `<div class="option-letter">${String.fromCharCode(65 + idx)}</div><div>${opt}</div>`;
+            div.onclick = () => selectOption(idx);
+            container.appendChild(div);
+        });
+
+        const saved = answers[currentQuestion];
+        if (saved !== null && saved !== undefined) {
+            selectOption(saved, true);
+        }
+    }
+
+    function selectOption(index, fromMemory = false) {
+        const q = questions[currentQuestion];
+        if (!fromMemory && selectedOption !== null) return;
+
+        if (!fromMemory) {
+            selectedOption = index;
+            answers[currentQuestion] = index;
+        }
+
+        highlightSelected(index, q);
+        showFeedback(index, q);
+        document.getElementById('nextBtn').disabled = false;
+        document.getElementById('cancelBtn').classList.add('show');
+    }
+
+    function highlightSelected(index, q) {
+        const opts = document.querySelectorAll('.option');
+        opts.forEach((opt, i) => opt.classList.remove('correct', 'incorrect'));
+
+        const correctIndices = Array.isArray(q.correct) ? q.correct : [q.correct];
+        if (Array.isArray(q.correct)) {
+            correctIndices.forEach(ci => opts[ci]?.classList.add('correct'));
+            if (!correctIndices.includes(index)) {
+                opts[index]?.classList.add('incorrect');
+            }
+        } else {
+            if (index === q.correct) {
+                opts[index].classList.add('correct');
+            } else {
+                opts[index].classList.add('incorrect');
+                opts[q.correct].classList.add('correct');
+            }
+        }
+    }
+
+    function showFeedback(index, q) {
+        const fb = document.getElementById('feedback');
+        const icon = document.getElementById('feedbackIcon');
+        const text = document.getElementById('feedbackText');
+        const rationaleDiv = document.getElementById('rationale');
+        const rationaleP = document.getElementById('rationaleText');
+
+        const correctIndices = Array.isArray(q.correct) ? q.correct : [q.correct];
+        const isCorrect = correctIndices.includes(index);
+
+        if (isCorrect) {
+            fb.className = 'feedback correct';
+            icon.textContent = '✅';
+            text.textContent = 'CORRECT!';
+        } else {
+            fb.className = 'feedback incorrect';
+            icon.textContent = '❌';
+            const letters = correctIndices.map(c => String.fromCharCode(65 + c)).join(', ');
+            text.textContent = `INCORRECT. Correct answer(s): ${letters}`;
+        }
+
+        fb.style.display = 'flex';
+        rationaleP.innerHTML = q.rationale;
+        rationaleDiv.classList.add('show');
+    }
+
+    function cancelSelection() {
+        const q = questions[currentQuestion];
+        selectedOption = null;
+        answers[currentQuestion] = null;
+        document.querySelectorAll('.option').forEach(opt => opt.classList.remove('correct', 'incorrect'));
+        document.getElementById('feedback').style.display = 'none';
+        document.getElementById('rationale').classList.remove('show');
+        document.getElementById('cancelBtn').classList.remove('show');
+        document.getElementById('nextBtn').disabled = true;
+    }
+
+    function nextCard() {
+        if (currentQuestion < questions.length - 1) {
+            currentQuestion++;
+            selectedOption = null;
+            loadQuestion();
+        } else {
+            currentQuestion = 0;
+            loadQuestion();
+        }
+    }
+
+    function previousCard() {
+        if (currentQuestion > 0) {
+            currentQuestion--;
+            const q = questions[currentQuestion];
+            selectedOption = answers[currentQuestion];
+            loadQuestion();
+        }
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key >= '1' && e.key <= '4') selectOption(parseInt(e.key)-1);
+        else if (e.key >= 'a' && e.key <= 'd') selectOption(e.key.charCodeAt(0)-97);
+        else if (e.key >= 'A' && e.key <= 'D') selectOption(e.key.charCodeAt(0)-65);
+        else if (e.key === 'ArrowLeft' && !document.getElementById('prevBtn').disabled) previousCard();
+        else if (e.key === 'ArrowRight' && !document.getElementById('nextBtn').disabled) nextCard();
+        else if (e.key === 'Escape' && document.getElementById('cancelBtn').classList.contains('show')) cancelSelection();
+    });
+
+    loadQuestion();
+</script>
+</body>
+</html>
